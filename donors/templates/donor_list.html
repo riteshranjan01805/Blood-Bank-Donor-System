@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-4">Search Donors</h2>
+<form method="get" class="row mb-4">
+    <div class="col-md-4">
+        <input type="text" name="blood_group" class="form-control" placeholder="Blood Group (e.g. A+)">
+    </div>
+    <div class="col-md-4">
+        <input type="text" name="city" class="form-control" placeholder="City">
+    </div>
+    <div class="col-md-4">
+        <button type="submit" class="btn btn-danger w-100">Search</button>
+    </div>
+</form>
+
+<ul class="list-group">
+    {% for donor in donors %}
+        <li class="list-group-item">
+            <strong>{{ donor.user.username }}</strong> - {{ donor.blood_group }} - {{ donor.city }}
+        </li>
+    {% empty %}
+        <li class="list-group-item text-muted">No donors found.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
